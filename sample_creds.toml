@@ -1,0 +1,4 @@
+[defaults]
+username = "tcpvpn.com-username"
+password = "password"
+expires_at = 0
