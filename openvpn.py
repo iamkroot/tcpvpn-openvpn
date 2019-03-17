@@ -62,7 +62,7 @@ class OPVPNInterface:
         while readable:
             data = readable[0].recv(1024).decode().strip()
             if data:
-                logger.debug(f'==={data}===')
+                # logger.debug(f'==={data}===')
                 yield data
             else:
                 self.management.close()
@@ -104,7 +104,7 @@ class OPVPNInterface:
             for _ in self.send_recv(f"password Auth {self.password}"):
                 pass
         logger.info("OpenVPN started.")
-        for _ in range(10):
+        for _ in range(30):
             state = self.get_state()
             if not state:
                 continue
@@ -117,7 +117,8 @@ class OPVPNInterface:
                     return
             time.sleep(1)
         else:
-            logger.error('Failed to connect to server.')
+            logger.error('Timed out while connecting to server.')
+            self.kill_instance()
 
     def kill_instance(self):
         for msg in self.send_recv('signal SIGTERM'):
