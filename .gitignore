@@ -1,0 +1,4 @@
+*.sock
+*.toml
+*.json
+__pycache__/
