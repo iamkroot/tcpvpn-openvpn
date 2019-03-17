@@ -1,0 +1,6 @@
+unrar_path = "/path/to/unrar"  # for unix
+# unrar_path = "C:\\Program Files\\WinRAR\\UnRAR.exe"  # for windows
+configs_fold = "~/.openvpn/configs"  # for unix
+# configs_fold = "~/OpenVPN\config"  # for windows
+serv_priorities = ["india", "india2", "sg7.4", "sg7.2"]
+port_priorities = [443, 80, 53]
