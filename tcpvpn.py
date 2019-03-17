@@ -35,6 +35,8 @@ class TCPVPNServAccCreator():
             self.serv_name = serv_name
             self.serv_path = dict(zip(STATES, serv_path))
         else:
+            if serv_name:
+                print("No server with provided name could be found.")
             self.serv_name = None
             self.serv_path = {}
 
