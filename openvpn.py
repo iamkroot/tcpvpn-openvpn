@@ -114,11 +114,12 @@ class OPVPNInterface:
             for msg in self.send_recv('log 2'):
                 if "Verification Failed: 'Auth'" in msg:
                     logger.error("Wrong creds")
-                    return
+                    return -1
             time.sleep(1)
         else:
             logger.error('Timed out while connecting to server.')
             self.kill_instance()
+            return -1
 
     def kill_instance(self):
         for msg in self.send_recv('signal SIGTERM'):

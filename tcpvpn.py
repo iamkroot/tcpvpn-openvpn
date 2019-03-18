@@ -1,12 +1,11 @@
 import argparse
 import re
 import secrets
-import sys
 
 import requests
 
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from bs4 import BeautifulSoup
 from fuzzywuzzy import process
@@ -33,7 +32,7 @@ class TCPVPNServAccCreator():
         serv_path = serv_paths.get(serv_name)
         if serv_path:
             self.serv_name = serv_name
-            self.serv_path = dict(zip(STATES, serv_path))
+            self.serv_path = dict(zip(self.STATES, serv_path))
         else:
             if serv_name:
                 print("No server with provided name could be found.")
@@ -208,7 +207,7 @@ class TCPVPNServAccCreator():
             "Origin": self.HOME_URL,
             "Referer": self.server['create_url'],
             "Upgrade-Insecure-Requests": "1",
-            "User-Agent": USER_AGENT
+            "User-Agent": self.USER_AGENT
         }
         r = self.sess.post(
             self.server['create_url'], data, headers=headers, timeout=10)

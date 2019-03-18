@@ -47,6 +47,7 @@ def get_serv_name(name):
 def get_serv_creds(name):
     creds = credentials.get(name)
     if not creds or creds['expires_at'].replace(tzinfo=None) < datetime.now():
+        print("Creating new account for", name)
         creds = create_account(name)
     return creds
 
@@ -76,14 +77,13 @@ def main():
     for name in cfg['serv_priorities']:
         serv = get_server(name)
         if serv and all(serv):
-            break
+            print("Creds will expire after", serv[2]['expires_at'].date())
+            op = OPVPNInterface(str(serv[1]), creds=serv[2])
+            if op.create_instance() != -1:
+                break
     else:
         print("No suitable server found.")
         return
-    print("Selected", serv[0])
-    print("Creds will expire after", serv[2]['expires_at'].date())
-    op = OPVPNInterface(str(serv[1]), creds=serv[2])
-    op.create_instance()
 
 
 if __name__ == '__main__':
