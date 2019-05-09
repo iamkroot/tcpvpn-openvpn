@@ -2,6 +2,10 @@
 
 This is a program built to automate creation of accounts on [tcpvpn.com](https://tcpvpn.com), followed by connecting via OpenVPN.
 
+## DEPRECATED
+
+tcpvpn.com has recently enforced a CAPTCHA requirement for creating the VPN Account on all of their servers. So this project is pretty much dead. You can still use the openvpn part as long you keep manually updating the credentials and their expiry date.
+
 ## Usage Instructions
 ### Installation
 1. Ensure that you have Python 3.6 or higher, with pipenv installed.
